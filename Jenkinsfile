@@ -49,7 +49,7 @@ pipeline {
           script {
             dir('codedeploy') {
               sh """#!/bin/bash
-#!/bin/bash
+echo ${BUILD_NUMBER} > deployment_number.txt
 zip -r deploy.zip *
 aws s3 cp deploy.zip s3://cicddemo.base2.services.simpletask.com/codedeploy/deploy${BUILD_NUMBER}.zip
 aws deploy create-deployment --application-name CiCdDemoApplication \

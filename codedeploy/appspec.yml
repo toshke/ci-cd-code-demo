@@ -1,6 +1,9 @@
 version: 0.0
 os: linux
 
+files:
+  - source:  deployment_number.txt
+    destination: /opt/last_deployment.txt
 hooks:
   ApplicationStop:
     - location: scripts/stop_server
