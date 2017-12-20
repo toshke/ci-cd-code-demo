@@ -1,4 +1,8 @@
 #!/bin/bash
 
-# stop container
-docker stop demo-container
+container=$(docker ps | grep demo-container)
+
+if [ ! -z "$container" ]; then
+  # stop container
+  docker stop demo-container
+fi
