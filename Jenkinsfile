@@ -4,7 +4,6 @@ pipeline {
 
 
   stages {
-  
     stage('Build'){
         steps {
           println "Building application image"
@@ -39,9 +38,9 @@ pipeline {
               sh """#!/bin/bash
 echo ${BUILD_NUMBER} > deployment_number.txt
 zip -r deploy.zip *
-aws s3 cp deploy.zip s3://cicddemo.base2.services.simpletask.com/codedeploy/deploy${BUILD_NUMBER}.zip
+aws s3 cp deploy.zip s3://cicddemo.base2.services.simpletask.com/codedeploy/deploy_novi${BUILD_NUMBER}.zip
 aws deploy create-deployment --application-name CiCdDemoApplication \
-    --s3-location bucket=cicddemo.base2.services.simpletask.com,bundleType=zip,key=codedeploy/deploy${BUILD_NUMBER}.zip \
+    --s3-location bucket=cicddemo.base2.services.simpletask.com,bundleType=zip,key=codedeploy/deploy_novi${BUILD_NUMBER}.zip \
     --deployment-group-name DemoInstance --region us-east-1
 """
             }
