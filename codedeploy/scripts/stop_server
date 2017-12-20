@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# stop container
+docker stop demo-container

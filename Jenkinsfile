@@ -44,5 +44,21 @@ pipeline {
         }
     }
 
+    stage('Codedeploy'){
+        steps {
+          script {
+            dir('codedeploy') {
+              sh """#!/bin/bash
+#!/bin/bash
+zip -r deploy.zip *
+aws s3 cp deploy.zip s3://cicddemo.base2.services.simpletask.com/codedeploy/deploy.zip
+aws deploy create-deployment --application-name CiCdDemoApplication \
+    --s3-location bucket=cicddemo.base2.services.simpletask.com,bundleType=zip,key=codedeploy/deploy.zip \
+    --deployment-group-name DemoInstance --region us-east-1
+"""
+            }
+          }
+        }
+    }
   }
 }
